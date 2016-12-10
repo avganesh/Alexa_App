@@ -6,7 +6,7 @@ import time
 import unidecode 
 
 app = Flask(__name__)
-ask = Ask(app, "/reddit_reader")
+ask = Ask(app, "/")
 
 
 def get_headlines(topic):
@@ -43,13 +43,13 @@ def homepage():
 
 @ask.launch
 def start_skill():
-    welcome_message = 'What the fuck do you want Nitish, do you want to hear the news? ... ... ... Bitch.'
+    welcome_message = 'Hi there, would you like to hear the news?'
     return question(welcome_message)
 
 @ask.intent("YesIntent")
 def share_headlines(NewsTopic):
     headlines = get_headlines(NewsTopic)
-    headline_msg = 'You want to know about the fucking {} ok... bitch.. the current fucking headlines are {}'.format(NewsTopic, headlines)
+    headline_msg = 'You want to know about {} ok.. the current headlines are {}'.format(NewsTopic, headlines)
     return statement(headline_msg)
 
 @ask.intent("NoIntent")
